@@ -14,6 +14,7 @@ class Position
     @x = x
     @y = y
     @theta = theta
+    valid?
   end
 
   def orientation
@@ -38,6 +39,10 @@ class Position
 
   def update_y(instruction)
     @y += (instruction.distance * Math.cos(0.25 * @theta * Math::PI)).round
+  end
+
+  def valid?
+    raise 'coordinate values must be <= 50' if x > 50 || y > 50
   end
 
 end

@@ -18,6 +18,14 @@ describe Position do
       expect(position.theta).to eq 90
     end
 
+    it 'should raise an error if x > 50' do
+      expect{ Position.new(51, 0, 0) }.to raise_error(RuntimeError)
+    end
+
+    it 'should raise an error if y > 50' do
+      expect{ Position.new(0, 51, 0) }.to raise_error(RuntimeError)
+    end
+
   end
 
   context '#orientation' do
