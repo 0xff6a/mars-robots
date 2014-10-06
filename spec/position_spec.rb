@@ -20,5 +20,12 @@ describe Position do
 
   end
 
+  context '#orientation' do
+
+    it 'should convert theta to an orientation (N,S,E,W)' do
+      expect(position.orientation).to eq 'E'
+    end
+
+  end
 
 end
