@@ -11,18 +11,22 @@ class Instruction
 
   def initialize(code)
     @code = code
-    @rotation = rotation_for(code)
-    @distance = distance_for(code)
+    @rotation = set_rotation
+    @distance = set_distance
   end
 
   private
 
-  def rotation_for(code)
-    CODES.fetch(code, []).first
+  def set_rotation
+    decoded.first
   end
 
-  def distance_for(code)
-    CODES.fetch(code, []).last
+  def set_distance
+    decoded.last
+  end
+
+  def decoded
+    CODES.fetch(code, [0,0])
   end
 
 end
