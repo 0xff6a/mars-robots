@@ -21,8 +21,22 @@ class Position
   end
 
   def update(instruction)
+    update_theta(instruction)
+    update_x(instruction)
+    update_y(instruction)
+  end
+
+  private 
+
+  def update_theta(instruction)
     @theta = (@theta + instruction.rotation) % 360
+  end
+
+  def update_x(instruction)
     @x += (instruction.distance *  Math.sin(0.25 * @theta * Math::PI)).round
+  end
+
+  def update_y(instruction)
     @y += (instruction.distance * Math.cos(0.25 * @theta * Math::PI)).round
   end
 
