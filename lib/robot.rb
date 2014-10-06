@@ -19,6 +19,10 @@ class Robot
     @position = nil
   end
 
+  def execute_mission(mission)
+    mission.instructions.each{ |instruction| execute_maneuver(instruction) }
+  end
+
   def execute_maneuver(instruction)
     position.update(instruction)
   end

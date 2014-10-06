@@ -42,4 +42,28 @@ describe Robot do
 
   end
 
+  context '#execute_mission' do
+
+    let(:mission) { double Mission, instructions: %w(a b) }
+
+    it 'can modify its position based on a mission string' do
+      expect(walle).to receive(:execute_maneuver).with('a')
+      expect(walle).to receive(:execute_maneuver).with('b')
+      walle.execute_mission(mission)
+    end
+
+  end
+
+  xcontext 'going off world' do
+
+    it 'should leave a scent if an instruction sends it off world' do
+
+    end
+
+    it 'if there is a scent in its new position, the instruction is ignored' do
+
+    end
+
+  end
+
 end
