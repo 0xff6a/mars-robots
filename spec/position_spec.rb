@@ -28,4 +28,33 @@ describe Position do
 
   end
 
+  context '#update' do
+
+    let(:r_ins) { Instruction.new('R')  }
+    let(:l_ins) { Instruction.new('L')  }
+    let(:f_ins) { Instruction.new('F')  }
+
+    it 'can modify its position based on an R instruction' do
+      position.update(r_ins)
+      expect(position.theta).to eq 180
+      expect(position.x).to eq 0
+      expect(position.y).to eq 1
+    end
+
+    it 'can modify its position based on an L instruction' do
+      position.update(l_ins)
+      expect(position.theta).to eq 0
+      expect(position.x).to eq 0
+      expect(position.y).to eq 1
+    end
+
+    it 'can modify its position based on an F instruction' do
+      position.update(f_ins)
+      expect(position.theta).to eq 90
+      expect(position.x).to eq 1
+      expect(position.y).to eq 1
+    end
+
+  end
+
 end

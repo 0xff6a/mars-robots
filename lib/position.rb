@@ -20,4 +20,10 @@ class Position
     COMPASS_PTS[theta]
   end
 
+  def update(instruction)
+    @theta = (@theta + instruction.rotation) % 360
+    @x += (instruction.distance *  Math.sin(0.25 * @theta * Math::PI)).round
+    @y += (instruction.distance * Math.cos(0.25 * @theta * Math::PI)).round
+  end
+
 end

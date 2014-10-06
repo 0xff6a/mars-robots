@@ -19,4 +19,8 @@ class Robot
     @position = nil
   end
 
+  def execute_maneuver(instruction)
+    position.update(instruction)
+  end
+
 end 
