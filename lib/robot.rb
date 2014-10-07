@@ -2,7 +2,7 @@ require_relative 'position'
 
 class Robot
 
-  attr_reader :lost
+  attr_reader   :lost
   attr_accessor :position, :grid
 
   def initialize(position)
@@ -16,7 +16,6 @@ class Robot
 
   def lose!
     @lost = true
-    @position = nil
   end
 
   def execute_mission(mission)

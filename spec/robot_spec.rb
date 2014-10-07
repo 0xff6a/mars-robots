@@ -40,10 +40,6 @@ describe Robot do
       expect(walle).to be_lost
     end
 
-    it 'when lost it has no position' do
-      expect(walle.position).to be nil
-    end
-
   end
 
   context '#execute_maneuver' do

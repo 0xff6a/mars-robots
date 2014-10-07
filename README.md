@@ -6,6 +6,13 @@ Add mission control
  - has a grid
  - pass grid to robots
  - run missions
+ - generate output
+
+Sample
+
+53
+11E
+RFRFRFRF
 
 Classes:
 --------
