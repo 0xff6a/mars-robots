@@ -25,6 +25,7 @@ class Position
     update_theta(instruction)
     update_x(instruction)
     update_y(instruction)
+    self
   end
 
   private 

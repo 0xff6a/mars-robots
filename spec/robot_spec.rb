@@ -4,6 +4,11 @@ describe Robot do
   
   let(:position)  { Position.new(0, 0, 90)  }
   let(:walle)     { Robot.new(position)     }
+  let(:f_ins)     { Instruction.new('F')    }
+
+  before(:each) do
+    walle.grid = Grid.new(10, 10, Square)
+  end
 
   context 'intialisation' do
 
@@ -13,6 +18,16 @@ describe Robot do
 
     it 'should have a position intially' do
       expect(walle.position).to eq position
+    end
+
+  end
+
+  context 'grid' do
+
+    it 'can hold a grid' do
+      g = double Grid
+      walle.grid = g
+      expect(walle.grid).to eq g
     end
 
   end
@@ -33,11 +48,11 @@ describe Robot do
 
   context '#execute_maneuver' do
 
-    let(:r_ins) { Instruction.new('R')  }
-
     it 'can modify its position based on an R instruction' do
-      expect(walle.position).to receive(:update).with(r_ins)
-      walle.execute_maneuver(r_ins)
+      new_position = double Position, x: 0, y: 0
+      expect(walle).to receive(:position_from).and_return(new_position)
+      walle.execute_maneuver(f_ins)
+      expect(walle.position).to eq new_position
     end
 
   end
@@ -54,14 +69,19 @@ describe Robot do
 
   end
 
-  xcontext 'going off world' do
+  context 'going off world' do
 
-    it 'should leave a scent if an instruction sends it off world' do
-
+    before(:each) do
+      walle.position = Position.new(0, 10, 0)
+      walle.execute_maneuver(f_ins)
     end
 
-    it 'if there is a scent in its new position, the instruction is ignored' do
+    it 'should know if it goes off world' do
+      expect(walle).to be_lost
+    end
 
+    it 'should leave a scent if an instruction sends it off world' do
+      expect(walle.grid.squares[0][10]).to be_scented
     end
 
   end
