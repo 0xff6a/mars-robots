@@ -6,21 +6,9 @@ class MissionControl
 
   attr_reader :params, :robots, :missions, :grid
 
-  def initialize( input_file, 
-                  robot_type,
-                  position_type, 
-                  grid_type,
-                  square_type, 
-                  mission_type,
-                  instruction_type
-                )
+  def initialize( input_file, objects)
     @in_file          = input_file
-    @robot_type       = robot_type
-    @position_type    = position_type
-    @grid_type        = grid_type
-    @square_type      = square_type
-    @mission_type     = mission_type
-    @instruction_type = instruction_type
+    @objects          = objects
     @params           = get_params
     build_environment
   end
@@ -57,11 +45,11 @@ class MissionControl
   end
 
   def create_robot_from(robot_param)
-    @robot_type.new(@position_type.new(robot_param[:position]))
+    @objects[:robot].new(@objects[:position].new(robot_param[:position]))
   end
 
   def create_grid
-    @grid = @grid_type.new(*max_grid_coords, @square_type)
+    @grid = @objects[:grid].new(*max_grid_coords, @objects[:square])
   end
 
   def max_grid_coords
@@ -77,7 +65,7 @@ class MissionControl
   end
 
   def create_mission_from(robot_param) 
-    @mission_type.new(robot_param[:mission], @instruction_type)
+    @objects[:mission].new(robot_param[:mission], @objects[:instruction])
   end
 
 end

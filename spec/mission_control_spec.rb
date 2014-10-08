@@ -4,17 +4,17 @@ require 'position'
 
 describe MissionControl do
   
-  let(:m) { MissionControl.new('data.txt',
-                                Robot,
-                                Position,
-                                Grid,
-                                Square,
-                                Mission,
-                                Instruction
-                              )               }
+let(:objects)   { {
+                    robot:       Robot,
+                    position:    Position,
+                    grid:        Grid,
+                    square:      Square,
+                    mission:     Mission,
+                    instruction: Instruction            } }
 
-  let(:data)    { "53\n11E\nRFRFRFRF"         }
-  let(:mission) { double Mission              }
+  let(:m)       { MissionControl.new('data.txt', objects) }
+  let(:data)    { "53\n11E\nRFRFRFRF"                     }
+  let(:mission) { double Mission                          }
 
   context 'initialisation' do
 

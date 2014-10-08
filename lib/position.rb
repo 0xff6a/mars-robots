@@ -34,7 +34,7 @@ class Position
   private 
 
   def coordinates_from(string)
-    [string[0, string.length / 2], string[string.length / 2, string.length  / 2 ]].map(&:to_i)
+    [string[0, half(string)], string[half(string), half(string)]].map(&:to_i)
   end
 
   def theta_from(position_string)
@@ -60,6 +60,10 @@ class Position
   def coordinate_to_s
     return x.to_s + y.to_s if x < 10 && y < 10
     sprintf('%02d', x) + sprintf('%02d', y)
+  end
+
+  def half(string)
+    string.length / 2
   end
 
 end

@@ -1,14 +1,14 @@
 require_relative 'lib/mission_control'
 
 def object_params
-  [
-    Robot,
-    Position,
-    Grid,
-    Square,
-    Mission,
-    Instruction
-  ]
+  {
+    robot:       Robot,
+    position:    Position,
+    grid:        Grid,
+    square:      Square,
+    mission:     Mission,
+    instruction: Instruction
+  }
 end
 
 def file
@@ -20,7 +20,7 @@ def print_usage_msg
 end
 
 def launch
-  mission_control = MissionControl.new(file, *object_params)
+  mission_control = MissionControl.new(file, object_params)
   puts mission_control.launch!
 end
 
