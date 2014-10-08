@@ -1,7 +1,7 @@
 Mars Robots: Technical Test
 ===========================
 
-[![Code Climate](https://codeclimate.com/github/foxjerem/mars-robots/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/mars-robots) [![Code Climate](https://codeclimate.com/github/foxjerem/mars-robots/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/mars-robots)
+[![Code Climate](https://codeclimate.com/github/foxjerem/mars-robots/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/mars-robots) [![Test Coverage](https://codeclimate.com/github/foxjerem/mars-robots/badges/coverage.svg)](https://codeclimate.com/github/foxjerem/mars-robots)
 
 Ruby Version
 ------------
