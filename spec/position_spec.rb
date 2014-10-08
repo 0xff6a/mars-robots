@@ -2,7 +2,7 @@ require 'position'
 
 describe Position do
   
-  let(:position) { Position.new(0, 1, 90) }
+  let(:position) { Position.new('01E') }
 
   context 'initialisation' do
 
@@ -19,11 +19,11 @@ describe Position do
     end
 
     it 'should raise an error if x > 50' do
-      expect{ Position.new(51, 0, 0) }.to raise_error(RuntimeError)
+      expect{ Position.new('5100N') }.to raise_error(RuntimeError)
     end
 
     it 'should raise an error if y > 50' do
-      expect{ Position.new(0, 51, 0) }.to raise_error(RuntimeError)
+      expect{ Position.new('0051N') }.to raise_error(RuntimeError)
     end
 
   end

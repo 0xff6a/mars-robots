@@ -1,24 +1,23 @@
 class Position
 
-  attr_accessor :x, :y, :theta
+  attr_reader :x, :y, :theta
 
   COMPASS_PTS = 
   {
-    0   => 'N',
-    90  => 'E',
-    180 => 'S',
-    270 => 'W'
+    'N' => 0,
+    'E' => 90,
+    'S' => 180,
+    'W' => 270
   }
 
-  def initialize(x, y, theta)
-    @x = x
-    @y = y
-    @theta = theta
+  def initialize(position_string)
+    @theta = theta_from(position_string)
+    @x, @y = coordinates_from(position_string.chop!)
     valid?
   end
 
   def orientation
-    COMPASS_PTS[theta]
+    COMPASS_PTS.invert[theta]
   end
 
   def update(instruction)
@@ -29,6 +28,14 @@ class Position
   end
 
   private 
+
+  def coordinates_from(string)
+    [string[0, string.length / 2], string[string.length / 2, string.length  / 2 ]].map(&:to_i)
+  end
+
+  def theta_from(position_string)
+    COMPASS_PTS[position_string.chars.last]
+  end
 
   def update_theta(instruction)
     @theta = (@theta + instruction.rotation) % 360

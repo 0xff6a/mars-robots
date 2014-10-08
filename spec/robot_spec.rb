@@ -2,7 +2,7 @@ require 'robot'
 
 describe Robot do
   
-  let(:position)  { Position.new(0, 0, 90)  }
+  let(:position)  { Position.new('00E')  }
   let(:walle)     { Robot.new(position)     }
   let(:f_ins)     { Instruction.new('F')    }
 
@@ -68,7 +68,7 @@ describe Robot do
   context 'going off world' do
 
     before(:each) do
-      walle.position = Position.new(0, 10, 0)
+      walle.position = Position.new('0010N')
       walle.execute_maneuver(f_ins)
     end
 
