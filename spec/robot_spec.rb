@@ -2,10 +2,10 @@ require 'robot'
 
 describe Robot do
   
-  let(:position)  { Position.new('00E')     }
-  let(:walle)     { Robot.new(position)     }
-  let(:f_ins)     { Instruction.new('F')    }
-  let(:mars)      { Grid.new(10, 10, Square)}
+  let(:position)  { Position.new('00E')       }
+  let(:walle)     { Robot.new(position)       }
+  let(:f_ins)     { Instruction.new('F')      }
+  let(:mars)      { Grid.new(10, 10, Square)  }
 
   before(:each) do
     walle.grid = mars
@@ -47,7 +47,7 @@ describe Robot do
 
     it 'can modify its position based on an R instruction' do
       new_position = double Position, x: 0, y: 0
-      expect(walle).to receive(:position_from).and_return(new_position)
+      allow(walle).to receive(:position_from).and_return(new_position)
       walle.execute_maneuver(f_ins)
       expect(walle.position).to eq new_position
     end

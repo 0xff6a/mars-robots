@@ -1,10 +1,10 @@
 require 'instruction'
 
 describe Instruction do
-  
-  let(:instruction) { Instruction.new('F') }
 
   context 'F-code' do
+
+    let(:instruction) { Instruction.new('F') }
 
     it 'should convert an F instruction into a +1 distance' do
       expect(instruction.distance).to eq 1

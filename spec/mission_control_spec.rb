@@ -11,10 +11,10 @@ describe MissionControl do
                                 Square,
                                 Mission,
                                 Instruction
-                              ) }
+                              )               }
 
-  let(:data)    { "53\n11E\nRFRFRFRF" }
-  let(:mission) { double Mission      }
+  let(:data)    { "53\n11E\nRFRFRFRF"         }
+  let(:mission) { double Mission              }
 
   context 'initialisation' do
 
