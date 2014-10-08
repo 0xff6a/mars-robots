@@ -6,7 +6,7 @@ require_relative 'mission'
 
 class MissionControl
 
-  attr_reader :params, :robots, :grid
+  attr_reader :params, :robots, :missions, :grid
 
   def initialize( input_file, 
                   robot_type,
@@ -23,19 +23,24 @@ class MissionControl
     @square_type      = square_type
     @mission_type     = mission_type
     @instruction_type = instruction_type
-    @params           = get_mission_params
-    launch
+    @params           = get_params
+    build_environment
   end
 
-  def launch
+  def build_environment
     create_robots
     create_grid
-    complete_mission
+    create_missions
+    pass_grid_to_robots
   end
 
   private
 
-  def get_mission_params
+  def pass_grid_to_robots
+    @robots.each { |robot| robot.grid = @grid }
+  end
+
+  def get_params
     raw = infile_to_a
     { grid_max: raw.first.shift, robot_params: robot_params(raw)}
   end
@@ -52,8 +57,8 @@ class MissionControl
     @robots = params[:robot_params].map{ |robot_param| create_robot_from(robot_param) }
   end
 
-  def create_robot_from(param)
-    @robot_type.new(@position_type.new(param[:position]))
+  def create_robot_from(robot_param)
+    @robot_type.new(@position_type.new(robot_param[:position]))
   end
 
   def create_grid
@@ -64,7 +69,12 @@ class MissionControl
     @params[:grid_max].split('').map(&:to_i)
   end
 
-  def complete_mission
+  def create_missions
+    @missions = params[:robot_params].map{ |robot_param| create_mission_from(robot_param) }
+  end
+
+  def create_mission_from(robot_param) 
+    @mission_type.new(robot_param[:mission], @instruction_type)
   end
 
 end

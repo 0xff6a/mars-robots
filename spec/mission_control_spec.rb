@@ -32,7 +32,14 @@ describe MissionControl do
       expect(m.robots.first.position.theta).to eq 90
     end
 
-    xit 'should assign the grid to the robots' do
+    it 'should assign the grid to all robots' do
+      expect(m.grid).to eq m.robots.first.grid
+    end
+
+    it 'should create missions from the data file' do
+      mission = double Mission
+      allow(Mission).to receive(:new).and_return(mission)
+      expect(m.missions.first).to eq mission
     end
 
   end
