@@ -1,4 +1,7 @@
-TO DO
+Mars Robots: Technical Test
+===========================
+
+[![Code Climate](https://codeclimate.com/github/foxjerem/mars-robots/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/mars-robots) [![Code Climate](https://codeclimate.com/github/foxjerem/mars-robots/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/mars-robots)
 
 Add robot ignores instruction if scent present
 
