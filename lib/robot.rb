@@ -27,8 +27,8 @@ class Robot
   end
 
   def execute_maneuver(instruction)
-    return if lost? 
     new_position = position_from(instruction)
+    return if lost? || have_a_bad_feeling_about_this?(new_position)
     off_world?(new_position) ? disappear! : @position = new_position
   end
 
@@ -37,6 +37,10 @@ class Robot
   def disappear!
     leave_scent
     lose!
+  end
+
+  def have_a_bad_feeling_about_this?(new_position)
+    off_world?(new_position) && grid.squares[position.x][position.y].scented?
   end
 
   def off_world?(simulated_position)

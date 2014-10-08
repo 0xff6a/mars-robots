@@ -2,12 +2,13 @@ require 'robot'
 
 describe Robot do
   
-  let(:position)  { Position.new('00E')  }
+  let(:position)  { Position.new('00E')     }
   let(:walle)     { Robot.new(position)     }
   let(:f_ins)     { Instruction.new('F')    }
+  let(:mars)      { Grid.new(10, 10, Square)}
 
   before(:each) do
-    walle.grid = Grid.new(10, 10, Square)
+    walle.grid = mars
   end
 
   context 'intialisation' do
@@ -92,6 +93,13 @@ describe Robot do
 
     it 'should leave a scent if an instruction sends it off world' do
       expect(walle.grid.squares[0][10]).to be_scented
+    end
+
+    it 'should not go off world if there is a scent on the square' do
+      eva = Robot.new(Position.new('0010N'))
+      eva.grid = mars
+      eva.execute_maneuver(f_ins)
+      expect(eva).not_to be_lost
     end
 
   end
