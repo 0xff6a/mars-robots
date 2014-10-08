@@ -6,7 +6,7 @@ describe Instruction do
 
     let(:instruction) { Instruction.new('F') }
 
-    it 'should convert an F instruction into a +1 distance' do
+    it 'should convert an F instruction into +1 distance' do
       expect(instruction.distance).to eq 1
     end
 
@@ -20,7 +20,7 @@ describe Instruction do
 
     let(:r_ins) { Instruction.new('R') }
 
-    it 'should convert an R instruction into a 0 distance' do
+    it 'should convert an R instruction into 0 distance' do
       expect(r_ins.distance).to eq 0
     end
 
@@ -34,7 +34,7 @@ describe Instruction do
 
     let(:l_ins) { Instruction.new('L') }
 
-    it 'should convert an L instruction into a 0 distance' do
+    it 'should convert an L instruction into 0 distance' do
       expect(l_ins.distance).to eq 0
     end
 

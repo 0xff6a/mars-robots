@@ -26,9 +26,7 @@ describe Robot do
   context 'grid' do
 
     it 'can hold a grid' do
-      g = double Grid
-      walle.grid = g
-      expect(walle.grid).to eq g
+      expect(walle.grid).to eq mars
     end
 
   end
