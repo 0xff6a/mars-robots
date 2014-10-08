@@ -53,7 +53,7 @@ describe MissionControl do
     end
 
     it 'should receive a status code for each mission' do
-
+      expect(m.launch!).to eq ['11E']
     end
 
   end

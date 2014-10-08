@@ -65,6 +65,20 @@ describe Robot do
 
   end
 
+  context '#status_report' do
+
+    it 'should provide a status report for a robot' do
+      expect(walle.status_report).to eq '00E'
+    end
+
+    it 'should append LOST to the status report for a lost robot' do
+      walle.position = Position.new('0010N')
+      walle.execute_maneuver(f_ins)
+      expect(walle.status_report).to eq '0010NLOST'
+    end
+
+  end
+
   context 'going off world' do
 
     before(:each) do

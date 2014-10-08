@@ -65,4 +65,12 @@ describe Position do
 
   end
 
+  context '#to_s' do
+
+    it 'can be converted back into a position string' do
+      expect(position.to_s).to eq '01E'
+    end
+
+  end
+
 end

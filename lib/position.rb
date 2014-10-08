@@ -27,6 +27,10 @@ class Position
     self
   end
 
+  def to_s
+    coordinate_to_s + orientation
+  end
+
   private 
 
   def coordinates_from(string)
@@ -51,6 +55,11 @@ class Position
 
   def valid?
     raise 'coordinate values must be <= 50' if x > 50 || y > 50
+  end
+
+  def coordinate_to_s
+    return x.to_s + y.to_s if x < 10 && y < 10
+    sprintf('%02d', x) + sprintf('%02d', y)
   end
 
 end

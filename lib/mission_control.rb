@@ -27,6 +27,7 @@ class MissionControl
 
   def launch!
     @robots.each_with_index{ |robot, index| robot.execute_mission(@missions[index]) }
+    @robots.map(&:status_report)
   end
 
   private
