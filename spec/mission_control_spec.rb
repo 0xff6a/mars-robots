@@ -4,7 +4,7 @@ require 'position'
 
 describe MissionControl do
   
-  let(:m) { MissionControl.new('dummy.txt',
+  let(:m) { MissionControl.new('data.txt',
                                 Robot,
                                 Position,
                                 Grid,
@@ -15,10 +15,6 @@ describe MissionControl do
 
   let(:data)    { "53\n11E\nRFRFRFRF" }
   let(:mission) { double Mission      }
-
-  before(:each) do
-    allow(File).to receive(:read).and_return(data)
-  end
 
   context 'initialisation' do
 
@@ -46,6 +42,10 @@ describe MissionControl do
 
   context '#launch' do
 
+    before(:each) do
+      allow(File).to receive(:read).and_return(data)
+    end
+
     it 'should launch a mission for each robot' do
       allow(Mission).to receive(:new).and_return(mission)
       expect(m.robots.first).to receive(:execute_mission).with(mission)
@@ -58,9 +58,10 @@ describe MissionControl do
 
   end
 
-  xcontext 'sample missions' do
+  context 'sample missions' do
 
     it 'should return the expected output for the sample missions' do
+      expect(m.launch!).to eq ['11E', '33NLOST', '23S']
     end
 
   end
