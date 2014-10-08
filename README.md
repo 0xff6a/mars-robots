@@ -1,12 +1,12 @@
 TO DO
 
+Add robot ignores instruction if scent present
+
 Add mission control
- - create robots
- - creates grid
- - has a grid
- - pass grid to robots
+
  - run missions
  - generate output
+
 
 Sample
 
@@ -22,3 +22,4 @@ Classes:
 - Mission: an array of instructions generated from a code string
 - Position: a coordinate and a heading
 - Robot: moves around the grid as instructed by a mission. Scents a square if it falls off world
+- MissionControl: runs missions based on file input

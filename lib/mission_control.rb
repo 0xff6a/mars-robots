@@ -1,5 +1,3 @@
-require 'json'
-
 require_relative 'robot'
 require_relative 'grid'
 require_relative 'mission'
@@ -27,17 +25,17 @@ class MissionControl
     build_environment
   end
 
+  def launch!
+    @robots.each_with_index{ |robot, index| robot.execute_mission(@missions[index]) }
+  end
+
+  private
+
   def build_environment
     create_robots
     create_grid
     create_missions
     pass_grid_to_robots
-  end
-
-  private
-
-  def pass_grid_to_robots
-    @robots.each { |robot| robot.grid = @grid }
   end
 
   def get_params
@@ -67,6 +65,10 @@ class MissionControl
 
   def max_grid_coords
     @params[:grid_max].split('').map(&:to_i)
+  end
+
+  def pass_grid_to_robots
+    @robots.each { |robot| robot.grid = @grid }
   end
 
   def create_missions

@@ -13,7 +13,8 @@ describe MissionControl do
                                 Instruction
                               ) }
 
-  let(:data) { "53\n11E\nRFRFRFRF"}
+  let(:data)    { "53\n11E\nRFRFRFRF" }
+  let(:mission) { double Mission      }
 
   before(:each) do
     allow(File).to receive(:read).and_return(data)
@@ -37,9 +38,29 @@ describe MissionControl do
     end
 
     it 'should create missions from the data file' do
-      mission = double Mission
       allow(Mission).to receive(:new).and_return(mission)
       expect(m.missions.first).to eq mission
+    end
+
+  end
+
+  context '#launch' do
+
+    it 'should launch a mission for each robot' do
+      allow(Mission).to receive(:new).and_return(mission)
+      expect(m.robots.first).to receive(:execute_mission).with(mission)
+      m.launch!
+    end
+
+    it 'should receive a status code for each mission' do
+
+    end
+
+  end
+
+  xcontext 'sample missions' do
+
+    it 'should return the expected output for the sample missions' do
     end
 
   end
