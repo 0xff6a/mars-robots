@@ -9,7 +9,7 @@ class MissionControl
   def initialize( input_file, objects)
     @in_file          = input_file
     @objects          = objects
-    @params           = get_params
+    @params           = params_from_datastore
     build_environment
   end
 
@@ -27,13 +27,17 @@ class MissionControl
     pass_grid_to_robots
   end
 
-  def get_params
+  def params_from_datastore
     raw = infile_to_a
-    { grid_max: raw.first.shift, robot_params: robot_params(raw)}
+    { grid_max: raw.first.shift, robots: robot_params(raw), missions: mission_params(raw) }
   end
 
   def robot_params(raw)
-    raw.map{ |entry| { position: entry[0], mission: entry[1] }  }
+    raw.map{ |entry| { position: entry[0] } }
+  end
+
+  def mission_params(raw)
+    raw.map{ |entry| { codes: entry[1] } }
   end
 
   def infile_to_a
@@ -41,11 +45,11 @@ class MissionControl
   end
 
   def create_robots
-    @robots = params[:robot_params].map{ |robot_param| create_robot_from(robot_param) }
+    @robots = params[:robots].map{ |robot_param| robot_factory(robot_param) }
   end
 
-  def create_robot_from(robot_param)
-    @objects[:robot].new(@objects[:position].new(robot_param[:position]))
+  def robot_factory(param)
+    @objects[:robot].new(@objects[:position].new(param[:position]))
   end
 
   def create_grid
@@ -61,11 +65,11 @@ class MissionControl
   end
 
   def create_missions
-    @missions = params[:robot_params].map{ |robot_param| create_mission_from(robot_param) }
+    @missions = params[:missions].map{ |mission_param| mission_factory(mission_param) }
   end
 
-  def create_mission_from(robot_param) 
-    @objects[:mission].new(robot_param[:mission], @objects[:instruction])
+  def mission_factory(param) 
+    @objects[:mission].new(param[:codes], @objects[:instruction])
   end
 
 end

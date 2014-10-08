@@ -10,7 +10,8 @@ let(:objects)   { {
                     grid:        Grid,
                     square:      Square,
                     mission:     Mission,
-                    instruction: Instruction            } }
+                    instruction: Instruction            
+                } }
 
   let(:m)       { MissionControl.new('data.txt', objects) }
   let(:data)    { "53\n11E\nRFRFRFRF"                     }

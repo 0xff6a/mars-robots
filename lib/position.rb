@@ -16,10 +16,6 @@ class Position
     valid?
   end
 
-  def orientation
-    COMPASS_PTS.invert[theta]
-  end
-
   def update(instruction)
     update_theta(instruction)
     update_x(instruction)
@@ -32,6 +28,10 @@ class Position
   end
 
   private 
+
+  def orientation
+    COMPASS_PTS.invert[theta]
+  end
 
   def coordinates_from(string)
     [string[0, half(string)], string[half(string), half(string)]].map(&:to_i)
@@ -58,12 +58,20 @@ class Position
   end
 
   def coordinate_to_s
-    return x.to_s + y.to_s if x < 10 && y < 10
-    sprintf('%02d', x) + sprintf('%02d', y)
+    return x.to_s + y.to_s if single_digit_coords?
+    padded_coords
   end
 
   def half(string)
     string.length / 2
+  end
+
+  def single_digit_coords?
+    x < 10 && y < 10
+  end
+
+  def padded_coords
+    sprintf('%02d', x) + sprintf('%02d', y)
   end
 
 end

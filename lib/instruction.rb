@@ -26,7 +26,7 @@ class Instruction
   end
 
   def decoded
-    CODES.fetch(code, [0,0])
+    CODES[code]
   end
 
 end

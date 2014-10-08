@@ -27,7 +27,7 @@ class Robot
   end
 
   def execute_maneuver(instruction)
-    new_position = position_from(instruction)
+    new_position = new_position_from(instruction)
     return if lost? || have_a_bad_feeling_about_this?(new_position)
     off_world?(new_position) ? disappear! : @position = new_position
   end
@@ -51,7 +51,7 @@ class Robot
     grid.squares[position.x][position.y].scent!
   end
 
-  def position_from(instruction)
+  def new_position_from(instruction)
     position.clone.update(instruction)
   end
 

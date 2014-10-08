@@ -15,12 +15,16 @@ def file
   ARGV.first
 end
 
+def factory
+ MissionControl.new(file, object_params)
+end
+
 def print_usage_msg
   puts "[usage] ruby run.rb 'filename'"
 end
 
 def launch
-  mission_control = MissionControl.new(file, object_params)
+  mission_control = factory
   puts mission_control.launch!
 end
 

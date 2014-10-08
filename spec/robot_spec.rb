@@ -47,7 +47,7 @@ describe Robot do
 
     it 'can modify its position based on an R instruction' do
       new_position = double Position, x: 0, y: 0
-      allow(walle).to receive(:position_from).and_return(new_position)
+      allow(walle).to receive(:new_position_from).and_return(new_position)
       walle.execute_maneuver(f_ins)
       expect(walle.position).to eq new_position
     end
