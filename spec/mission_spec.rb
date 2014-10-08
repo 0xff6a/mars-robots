@@ -2,9 +2,9 @@ require 'mission'
 
 describe Mission do
   
-  # let(:mission) { Mission.new('RFRLF', Instruction) }
+  let(:mission) { Mission.new('RFRLF', Instruction) }
 
-  xcontext 'initialisation' do
+  context 'initialisation' do
 
     it 'should create an array of instructions from an input string' do
       expect(mission.instructions.map(&:code).join('')).to eq 'RFRLF'
