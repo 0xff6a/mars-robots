@@ -1,9 +1,8 @@
-# Spiking
+require 'json'
+
 require_relative 'robot'
 require_relative 'grid'
 require_relative 'mission'
-
-require 'json'
 
 class MissionControl
 
@@ -38,7 +37,7 @@ class MissionControl
 
   def get_mission_params
     raw = infile_to_a
-    { grid_max: raw.first.shift, robots: robot_params(raw)}
+    { grid_max: raw.first.shift, robot_params: robot_params(raw)}
   end
 
   def robot_params(raw)
@@ -50,12 +49,19 @@ class MissionControl
   end
 
   def create_robots
-    @robots = params[:robots].map{ |robot| 
-        @robot_type.new(@position_type.new(robot[:position])) }
+    @robots = params[:robot_params].map{ |robot_param| create_robot_from(robot_param) }
+  end
+
+  def create_robot_from(param)
+    @robot_type.new(@position_type.new(param[:position]))
   end
 
   def create_grid
-    @grid = @grid_type.new(*@params[:grid_max].split('').map(&:to_i), @square_type)
+    @grid = @grid_type.new(*max_grid_coords, @square_type)
+  end
+
+  def max_grid_coords
+    @params[:grid_max].split('').map(&:to_i)
   end
 
   def complete_mission
