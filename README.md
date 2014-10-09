@@ -10,11 +10,11 @@ Ruby 2.1.2
 Objectives
 ----------
 
-Create a program that moves a set of robots sequentially over a grid on a distant planet
+Create a programme that moves a set of robots sequentially over a grid on a distant planet
 
 Workings
 --------
-- Designed programme for maximum flexibility and extensibility: new instructions can easily be added and can be processed by the original logic
+- Designed code for maximum flexibility and extensibility: new instructions can easily be added and can be processed by the original logic
 - Implemented squares/mission as separate classes rather than as boolean/array to ensure extensibility and strictly respect SRP
 - Added validation for maximum coordinate and instruction code length
 - Assumed that single digit coordinates would be declared as 'xy', but if a single coordinate had double digits the other would be padded with a zero to remove ambiguity
